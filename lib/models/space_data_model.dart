@@ -1,10 +1,4 @@
-/// Model data untuk menangkap response dari API SpaceFlight.
-///
-/// Catatan penting:
-/// - Field di bawah ini mengikuti struktur JSON dari API:
-///   https://api.spaceflightnewsapi.net/v4/articles/
-/// - JIKA API BERBEDA (nama field / struktur JSON beda),
-///   ubah bagian dalam factory `fromJson`.
+
 class SpaceData {
   final int id;
   final String title;
@@ -24,10 +18,7 @@ class SpaceData {
     required this.newsSite,
   });
 
-  /// Mapping JSON -> Object
-  /// UBAH JIKA API BERBEDA:
-  /// - ganti nama key json['image_url'], json['published_at'], dll
-  ///   sesuai dengan struktur API baru.
+
   factory SpaceData.fromJson(Map<String, dynamic> json) {
     return SpaceData(
       id: json['id'],

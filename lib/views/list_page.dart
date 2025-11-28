@@ -4,8 +4,8 @@ import '../models/space_data_model.dart';
 import 'detail_page.dart';
 
 class ListPage extends StatelessWidget {
-  final String title; // "News", "Blog", "Report"
-  final String endpoint; // 'articles', 'blogs', 'reports'
+  final String title; 
+  final String endpoint; 
 
   const ListPage({super.key, required this.title, required this.endpoint});
 
@@ -13,14 +13,6 @@ class ListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final ApiService apiService = ApiService();
 
-    // ==============================
-    // UBAH JIKA API DIGANTI:
-    // ------------------------------
-    // - Di sini hanya teks judul AppBar saja.
-    // - Kalau di kuis nanti nama endpoint untuk news/blog/report beda,
-    //   logika ini boleh diubah sesuai kebutuhan tampilan.
-    //   (misal endpoint 'news', 'blog_post', dst).
-    // ==============================
     String appBarTitle;
     switch (endpoint) {
       case 'articles':
@@ -43,26 +35,7 @@ class ListPage extends StatelessWidget {
         backgroundColor: Colors.deepPurple,
       ),
       body: FutureBuilder<List<SpaceData>>(
-        // ======================================
-        // UBAH JIKA API DIGANTI:
-        // --------------------------------------
-        // - Sekarang list data diambil dengan:
-        //     GET {baseUrl}/{endpoint}/
-        //   lewat ApiService.fetchData(endpoint).
-        // - Kalau di kuis nanti:
-        //     * URL-nya beda
-        //     * atau butuh query param khusus
-        //   maka yang diubah adalah isi fungsi
-        //   ApiService.fetchData() dan cara
-        //   memanggilnya di sini (misal:
-        //   apiService.fetchData('news') atau
-        //   apiService.fetchNews(page:1) dsb).
-        //
-        // - TAPI: struktur list yang dikembalikan
-        //   ke sini tetap List<SpaceData>.
-        //   Jadi model SpaceData.fromJson juga
-        //   harus disesuaikan ketika API berubah.
-        // ======================================
+
         future: apiService.fetchData(endpoint),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -81,19 +54,6 @@ class ListPage extends StatelessWidget {
             itemBuilder: (context, index) {
               final data = dataList[index];
 
-              // ======================================
-              // UBAH JIKA API DIGANTI (LEVEL DATA):
-              // --------------------------------------
-              // - Field yang digunakan di sini:
-              //     data.id         -> untuk detail
-              //     data.imageUrl   -> gambar
-              //     data.title
-              //     data.newsSite
-              //     data.publishedAt
-              // - Kalau nama field di JSON beda,
-              //   ubah mapping-nya di SpaceData.fromJson
-              //   (bukan di sini).
-              // ======================================
               return Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -107,7 +67,7 @@ class ListPage extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) => DetailPage(
                           endpoint: endpoint,
-                          id: data.id, // <-- wajib ada id dari API
+                          id: data.id, // <--  id dari API
                           pageTitle: "$title Detail",
                         ),
                       ),
@@ -128,9 +88,7 @@ class ListPage extends StatelessWidget {
                             width: double.infinity,
                             fit: BoxFit.cover,
 
-                            // ======================================
-                            // AGAR TIDAK MUNCUL ERROR TEKS PANJANG
-                            // KETIKA GAMBAR GAGAL DI-LOAD:
+
                             errorBuilder: (context, error, stackTrace) {
                               return Container(
                                 height: 200,

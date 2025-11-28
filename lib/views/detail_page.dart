@@ -4,9 +4,9 @@ import '../models/space_data_model.dart';
 import '../services/api_service.dart';
 
 class DetailPage extends StatelessWidget {
-  final String endpoint; // 'articles', 'blogs', 'reports'
+  final String endpoint; 
   final int id;
-  final String pageTitle; // contoh: 'News Detail', 'Blog Detail', dll
+  final String pageTitle; 
 
   const DetailPage({
     super.key,
@@ -26,23 +26,9 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final apiService = ApiService();
 
-    // Di sini kita pakai FutureBuilder sekali saja,
-    // dan di dalamnya kita bangun Scaffold, body, dan FAB
-    // supaya tidak memanggil API dua kali.
+
     return FutureBuilder<SpaceData>(
-      // ======================================
-      // UBAH JIKA API DIGANTI:
-      // --------------------------------------
-      // - Sekarang detail diambil dari:
-      //     GET {baseUrl}/{endpoint}/{id}/
-      //   lewat ApiService.fetchDetail(endpoint, id).
-      // - Jika di kuis URL detail berbeda
-      //   (misal pakai query ?id=, atau endpoint lain),
-      //   ubah logika di ApiService.fetchDetail().
-      //
-      // - Premis: API tetap mengembalikan 1 objek
-      //   yang bisa dimapping ke SpaceData.
-      // ======================================
+
       future: apiService.fetchDetail(endpoint, id),
       builder: (context, snapshot) {
         final isLoading = snapshot.connectionState == ConnectionState.waiting;
@@ -69,9 +55,7 @@ class DetailPage extends StatelessWidget {
                                   width: double.infinity,
                                   fit: BoxFit.cover,
 
-                                  // Sama seperti di ListPage:
-                                  // kalau gambar gagal di-load, tampilkan
-                                  // placeholder, bukan teks error HTTP.
+                                 
                                   errorBuilder: (context, error, stackTrace) {
                                     return Container(
                                       height: 220,
@@ -107,18 +91,7 @@ class DetailPage extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      // ======================================
-                                      // UBAH JIKA API DIGANTI (LEVEL DATA):
-                                      // --------------------------------------
-                                      // - Field yang digunakan:
-                                      //     snapshot.data!.title
-                                      //     snapshot.data!.newsSite
-                                      //     snapshot.data!.publishedAt
-                                      //     snapshot.data!.summary
-                                      //     snapshot.data!.url  (untuk See More)
-                                      // - Kalau nama field di JSON beda,
-                                      //   ubah mapping di SpaceData.fromJson.
-                                      // ======================================
+                                  
                                       Text(
                                         snapshot.data!.title,
                                         style: const TextStyle(

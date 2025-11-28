@@ -82,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Background gradasi agar lebih menarik
+      // Background gradasi 
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(

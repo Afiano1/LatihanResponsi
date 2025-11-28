@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.deepPurple,
-        // sesuai ketentuan: AppBar menampilkan username yang digunakan untuk Login
+  
         title: Text("Hai, $username!"),
         actions: [
           IconButton(
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
             _buildMenuCard(
               context,
               "News",
-              "articles", // UBAH JIKA API BERBEDA (nama endpoint untuk news)
+              "articles", // (nama endpoint untuk news)
               Icons.newspaper,
               Colors.blue[100]!,
               "Get an overview of the latest SpaceFlight news.",
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
             _buildMenuCard(
               context,
               "Blog",
-              "blogs", // UBAH JIKA API BERBEDA (nama endpoint untuk blog)
+              "blogs", //  (nama endpoint untuk blog)
               Icons.book,
               Colors.green[100]!,
               "Blogs provide more detailed overview of launches.",
@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
             _buildMenuCard(
               context,
               "Report",
-              "reports", // UBAH JIKA API BERBEDA (nama endpoint untuk report)
+              "reports", //  (nama endpoint untuk report)
               Icons.analytics,
               Colors.purple[100]!,
               "Reports berisi data dan analisis misi.",
